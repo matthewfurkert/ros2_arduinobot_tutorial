@@ -1,0 +1,16 @@
+{
+    "python.analysis.extraPaths": [
+        "/home/furky/workspace/arduinobot_ws/install/arduinobot_py_examples/lib/python3.10/site-packages",
+        "/home/furky/workspace/ros2_ws/build/my_turtlesim_pkg",
+        "/home/furky/workspace/ros2_ws/install/my_turtlesim_pkg/lib/python3.10/site-packages",
+        "/home/furky/workspace/ros2_ws/build/my_py_pkg",
+        "/home/furky/workspace/ros2_ws/install/my_py_pkg/lib/python3.10/site-packages",
+        "/home/furky/workspace/ros2_ws/build/actions_py",
+        "/home/furky/workspace/ros2_ws/install/actions_py/lib/python3.10/site-packages",
+        "/home/furky/workspace/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages",
+        "/home/furky/workspace/ros2_ws/build/lifecycle_py",
+        "/home/furky/workspace/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
