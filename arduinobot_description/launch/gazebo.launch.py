@@ -23,7 +23,7 @@ def generate_launch_description():
     )
     
     ros_distro = os.environ["ROS_DISTRO"]
-    physics_engine = "" if ros_distro == "humble" else "--physics-engine gz-physiscs-bullet-featherstone-plugin"
+    physics_engine = "" if ros_distro == "humble" else "--physics-engine gz-physics-bullet-featherstone-plugin"
     
     robot_state_publisher = Node(
             package="robot_state_publisher",
@@ -53,7 +53,11 @@ def generate_launch_description():
     gz_ros2_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
-        arguments="/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock]"
+        arguments=[
+            "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock]",
+            "/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
+            "/image_raw@sensor_msgs/msg/Image@gz.msgs.Image",
+            ]
     )
     
     return LaunchDescription([
