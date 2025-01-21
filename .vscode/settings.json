@@ -12,5 +12,19 @@
         "/home/furky/workspace/ros2_ws/install/lifecycle_py/lib/python3.10/site-packages",
         "/opt/ros/humble/lib/python3.10/site-packages",
         "/opt/ros/humble/local/lib/python3.10/dist-packages"
-    ]
+    ],
+    "python.autoComplete.extraPaths": [
+        "/home/furky/workspace/arduinobot_ws/build/arduinobot_py_examples",
+        "/home/furky/workspace/arduinobot_ws/install/arduinobot_py_examples/lib/python3.12/site-packages",
+        "/home/furky/workspace/ros2_ws/build/mogi_trajectory_server",
+        "/home/furky/workspace/ros2_ws/install/mogi_trajectory_server/lib/python3.12/site-packages",
+        "/home/furky/workspace/ros2_ws/build/bme_ros2_tutorials_py",
+        "/home/furky/workspace/ros2_ws/install/bme_ros2_tutorials_py/lib/python3.12/site-packages",
+        "/home/furky/workspace/ros2_ws/install/bme_ros2_tutorials_interfaces/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ],
+    "editor.tokenColorCustomizations": {
+        "comments": "",
+        "textMateRules": []
+    }
 }
