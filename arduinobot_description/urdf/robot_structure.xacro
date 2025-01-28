@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-
+    
     <xacro:property name="effort" value="30.0" />
     <xacro:property name="velocity" value="10.0" />
 
@@ -72,7 +72,7 @@
         <xacro:default_inertia mass="0.1" />
     </link>
 
-    <link name="horrizontal_arm">
+    <link name="horizontal_arm">
         <visual>
             <origin xyz="-0.03 -0.4 -0.06" rpy="${pi / 2.0} 0 ${pi / 2.0}" />
             <geometry>
@@ -176,14 +176,14 @@
     <joint name="joint_3" type="revolute">
         <origin xyz="0 0 0.8" rpy="0 0 0" />
         <parent link="forward_drive_arm" />
-        <child link="horrizontal_arm" />
+        <child link="horizontal_arm" />
         <axis xyz="1 0 0" />
         <limit lower="-${pi / 2.0}" upper="${pi / 2.0}" effort="${effort}" velocity="${velocity}" />
     </joint>
 
-    <joint name="horrizontal_arm_to_claw_support" type="fixed">
+    <joint name="horizontal_arm_to_claw_support" type="fixed">
         <origin xyz="0 0.82 0" rpy="0 0 0" />
-        <parent link="horrizontal_arm" />
+        <parent link="horizontal_arm" />
         <child link="claw_support" />
     </joint>
 

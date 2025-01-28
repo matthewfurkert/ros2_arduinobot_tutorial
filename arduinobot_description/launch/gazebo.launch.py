@@ -64,7 +64,7 @@ def generate_launch_description():
         arguments=[
             "-name", "my_robot",
             "-topic", "robot_description",
-             "-x", "0.0", "-y", "0.0", "-z", "0.5", "-Y", "0.0"  # Initial spawn position
+             "-x", "0.0", "-y", "0.0", "-z", "0.0", "-Y", "0.0"  # Initial spawn position
         ],
         parameters=[
             {'use_sim_time': LaunchConfiguration('use_sim_time')},
@@ -77,10 +77,10 @@ def generate_launch_description():
         executable="parameter_bridge",
         arguments=[
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
-            "/joint_states@sensor_msgs/msg/JointState@gz.msgs.Model",
-            "/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V",
-            "/rgb_camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image",
-            "/rgb_camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
+            # "/joint_states@sensor_msgs/msg/JointState@gz.msgs.Model",
+            # "/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V",
+            # "/rgb_camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image",
+            # "/rgb_camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
         ],
         output="screen",
         parameters=[
@@ -88,18 +88,18 @@ def generate_launch_description():
         ]
     )
 
-    # Launches rviz with the specified robot model
-    rviz_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        arguments=[
-            '-d', os.path.join(pkg_arduinobot_descripton, 
-                               'rviz', 'display.rviz')
-        ],
-        parameters=[
-            {'use_sim_time': LaunchConfiguration('use_sim_time')},
-        ]
-    )
+    # # Launches rviz with the specified robot model
+    # rviz_node = Node(
+    #     package='rviz2',
+    #     executable='rviz2',
+    #     arguments=[
+    #         '-d', os.path.join(pkg_arduinobot_descripton, 
+    #                            'rviz', 'display.rviz')
+    #     ],
+    #     parameters=[
+    #         {'use_sim_time': LaunchConfiguration('use_sim_time')},
+    #     ]
+    # )
     
     ld = LaunchDescription()
 
@@ -111,6 +111,6 @@ def generate_launch_description():
     ld.add_action(robot_state_publisher_node)
     ld.add_action(gz_spawn_entity)
     ld.add_action(gz_bridge_node)
-    ld.add_action(rviz_node)
+    # ld.add_action(rviz_node)
     
     return ld

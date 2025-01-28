@@ -2,6 +2,8 @@
 <robot name="arduinobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:include filename="common_properties.xacro" />
+    <xacro:include filename="arduinobot_gazebo.xacro"/>
+    <xacro:include filename="arduinobot_control.xacro"/>
     <xacro:include filename="robot_structure.xacro" />
     <xacro:include filename="camera.xacro" />
 
