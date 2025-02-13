@@ -9,12 +9,22 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 find_package(rclpy REQUIRED)
+find_package(rclcpp REQUIRED)
 find_package(arduinobot_interfaces REQUIRED)
+find_package(tf2 REQUIRED)
 
 ament_python_install_package(${PROJECT_NAME})
 
+add_executable(angle_conversion src/angle_conversion.cpp)
+ament_target_dependencies(angle_conversion rclcpp arduinobot_interfaces tf2)
+
 install(PROGRAMS
   ${PROJECT_NAME}/angle_conversion.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(TARGETS
+  angle_conversion
   DESTINATION lib/${PROJECT_NAME}
 )
 
