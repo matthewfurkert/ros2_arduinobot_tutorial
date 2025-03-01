@@ -12,6 +12,7 @@ find_package(rclcpp_lifecycle REQUIRED)
 find_package(hardware_interface REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(PkgConfig REQUIRED)
+find_package(std_msgs REQUIRED)
 
 pkg_check_modules(SERIAL libserial)
 

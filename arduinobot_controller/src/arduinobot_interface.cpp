@@ -21,6 +21,10 @@ std::string compensateZeros(int value)
 
 ArduinobotInterface::ArduinobotInterface()
 {
+}
+
+ArduinobotInterface::~ArduinobotInterface()
+{
     if (arduino_.IsOpen()) {
         try {
             arduino_.Close();
@@ -66,7 +70,7 @@ std::vector<hardware_interface::StateInterface> ArduinobotInterface::export_stat
     return state_interfaces;
 }
 
-std::vector <hardware_interface::CommandInterface> ArduinobotInterface::export_command_interfaces() 
+std::vector<hardware_interface::CommandInterface> ArduinobotInterface::export_command_interfaces() 
 {
     std::vector<hardware_interface::CommandInterface> command_interfaces;
     for (size_t i = 0; i < info_.joints.size(); i++) {
@@ -162,6 +166,7 @@ hardware_interface::return_type ArduinobotInterface::write(const rclcpp::Time &t
 
     try {
         arduino_.Write(msg);
+        // RCLCPP_INFO(rclcpp::get_logger("ArduinobotInterface"), "Sent: %s", msg.c_str());
     } catch(...) {
         RCLCPP_ERROR_STREAM(rclcpp::get_logger("ArduinobotInterface"), "Something went wrong whilst sending this message " << msg << " to the port " << port_);
         return hardware_interface::return_type::ERROR;

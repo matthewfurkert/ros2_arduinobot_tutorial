@@ -23,7 +23,7 @@ public:
 
     virtual CallbackReturn on_init(const hardware_interface::HardwareInfo &hardware_info) override;
     virtual std::vector<hardware_interface::StateInterface> export_state_interfaces() override;
-    virtual std::vector <hardware_interface::CommandInterface> export_command_interfaces() override;
+    virtual std::vector<hardware_interface::CommandInterface> export_command_interfaces() override;
 
     virtual hardware_interface::return_type read(const rclcpp::Time &time, const rclcpp::Duration &period) override;
     virtual hardware_interface::return_type write(const rclcpp::Time &time, const rclcpp::Duration &period) override;

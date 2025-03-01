@@ -26,7 +26,7 @@ void reached_goal(Servo &motor, int goal)
     for (int pos = motor.read(); pos <= goal; pos++)
     {
       motor.write(pos);
-      delay(5);
+//      delay(5);
     }
   }
   else
@@ -34,7 +34,7 @@ void reached_goal(Servo &motor, int goal)
     for (int pos = motor.read(); pos >= goal; pos--)
     {
       motor.write(pos);
-      delay(5);
+//      delay(5);
     }
   }
 }
@@ -86,32 +86,37 @@ void loop() {
     else if (chr == ',')
     {
       int val = atoi(value);
-      if (idx == 0)
+      if (val >= 0 && val <= 180)
       {
-        reached_goal(base, val);
-      }
-      else if (idx == 1)
-      {
-        reached_goal(shoulder, val);
-      }
-      else if (idx == 2)
-      {
-        reached_goal(elbow, val);
-      }
-      else if (idx == 3)
-      {
-        reached_goal(gripper, val);
+        if (idx == 0)
+        {
+          reached_goal(base, val);
+        }
+        else if (idx == 1)
+        {
+          reached_goal(shoulder, val);
+        }
+        else if (idx == 2)
+        {
+          reached_goal(elbow, val);
+        }
+        else if (idx == 3)
+        {
+          reached_goal(gripper, val);
+        }
       }
 
       value[0] = '0';
       value[1] = '0';
       value[2] = '0';
       value[3] = '\0';
+      value_idx = 0;
     }
-    else
+    else if (chr >= '0' && chr <= '9' && value_idx < 3)
     {
       value[value_idx] = chr;
       value_idx++;
+      value[value_idx] = '\0';
     }
   }
 }

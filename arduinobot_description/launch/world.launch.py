@@ -7,37 +7,22 @@ from launch.substitutions import  LaunchConfiguration, PathJoinSubstitution, Tex
 
 
 def generate_launch_description():
-
-    world_arg = DeclareLaunchArgument(
-        'world', default_value='new_world.sdf',
-        description='Name of the Gazebo world file to load'
-    )
-
-    pkg_bme_gazebo_basics = get_package_share_directory('arduinobot_description')
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
+    pkg_arduinobot_description = get_package_share_directory('arduinobot_description')
+    gz_launch_path = PathJoinSubstitution([pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py'])
 
-    # Add your own gazebo library path here
-    gazebo_models_path = "/home/furky/gazebo_models"
-    os.environ["GZ_SIM_RESOURCE_PATH"] += os.pathsep + gazebo_models_path
-
-
-    gazebo_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py'),
+    return LaunchDescription([
+        DeclareLaunchArgument(
+            name='world',
+            default_value='mancave.sdf',
+            description='Name of the Gazebo world file to load'
         ),
-        launch_arguments={'gz_args': [PathJoinSubstitution([
-            pkg_bme_gazebo_basics,
-            'worlds',
-            LaunchConfiguration('world')
-        ]),
-        TextSubstitution(text=' -r -v -v1 --physics-engine gz-physics-bullet-featherstone-plugin')],
-        # TextSubstitution(text=' -r -v -v1')],
-        'on_exit_shutdown': 'true'}.items()
-    )
-
-    launchDescriptionObject = LaunchDescription()
-
-    launchDescriptionObject.add_action(world_arg)
-    launchDescriptionObject.add_action(gazebo_launch)
-
-    return launchDescriptionObject
+        IncludeLaunchDescription(
+            launch_description_source=PythonLaunchDescriptionSource(gz_launch_path),
+            launch_arguments={
+                'gz_args': [PathJoinSubstitution([pkg_arduinobot_description, 'worlds', LaunchConfiguration('world')]),
+                TextSubstitution(text=' -r -v -v1 --physics-engine gz-physics-bullet-featherstone-plugin')],
+                'on_exit_shutdown': 'true'
+            }.items()
+        )
+    ])

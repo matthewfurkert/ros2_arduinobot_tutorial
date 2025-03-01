@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-<!-- 
-    <gazebo>
+
+    <!-- <gazebo>
         <plugin
             filename="gz-sim-joint-state-publisher-system"
             name="gz::sim::systems::JointStatePublisher">
@@ -13,11 +13,44 @@
             <joint_name>joint_5</joint_name>
         </plugin>
     </gazebo>
-     -->
+
     <gazebo>
         <plugin
-            filename="gz_ros2_control-system"
-            name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+            <joint_name>joint_1</joint_name>
+            <p_gain>1</p_gain>
+            <i_gain>0.1</i_gain>
+            <d_gain>0.01</d_gain>
+        </plugin>
+        <plugin
+            filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+            <joint_name>joint_2</joint_name>
+            <p_gain>1</p_gain>
+            <i_gain>0.1</i_gain>
+            <d_gain>0.01</d_gain>
+        </plugin>
+        <plugin
+            filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+            <joint_name>joint_3</joint_name>
+            <p_gain>1</p_gain>
+            <i_gain>0.1</i_gain>
+            <d_gain>0.01</d_gain>
+        </plugin>
+        <plugin
+            filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+            <joint_name>joint_4</joint_name>
+            <p_gain>1</p_gain>
+            <i_gain>0.1</i_gain>
+            <d_gain>0.01</d_gain>
+        </plugin>
+    </gazebo> -->
+    
+    <gazebo>
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
             <parameters>$(find arduinobot_controller)/config/arduinobot_controllers.yaml</parameters>
         </plugin>
     </gazebo>
